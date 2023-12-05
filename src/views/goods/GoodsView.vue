@@ -1,3 +1,4 @@
+<!-- 商品列表页面 -->
 <template>
   <div >
     <el-form :inline="true" :model="selected_data" class="search-form">
@@ -14,7 +15,7 @@
         <el-button type="primary" @click="onSearchGoods()">查询</el-button>
       </el-form-item>
     </el-form>
-
+<!-- 表格 -->
     <el-table :data="showedDataList.compDataList" border style="width: 100%">
       <el-table-column prop="id" label="编号" width="180" />
       <el-table-column prop="title" label="商品名称" width="180" />
@@ -42,7 +43,7 @@ export default defineComponent({
 
     // 获取全部商品数据, 因为多个地方使用,所以封装为方法
     const p_getGoodsList = () => {
-      getGoodsList().then(res => {
+      getGoodsList().then((res: { data: { data: string | any[]; }; }) => {
         console.log('gg', res)
         goods_data.goods_list = res.data.data
         goods_data.selected_data.data_count = res.data.data.length
@@ -57,16 +58,20 @@ export default defineComponent({
     const onSearchGoods = () => {
       // console.log(goods_data.selected_data.title)
       // console.log(goods_data.selected_data.introduce)
-      let search_res: IGoods[] = []  // 接受查询商品的结果
-      if(goods_data.selected_data.title || goods_data.selected_data.introduce){
+      let search_res: IGoods[] = []  // 定义数组，接受查询后要展示的数据
+      if(goods_data.selected_data.title || goods_data.selected_data.introduce){ // 判断两个其中一个是否有值
         if(goods_data.selected_data.title){
-          search_res = goods_data.goods_list.filter((value) => {
+          search_res = goods_data.goods_list.filter((
+            value: { title: string | any[]; }
+            ) => {
             return value.title.indexOf(goods_data.selected_data.title) !== -1
           })
         }
         else {
           if(goods_data.selected_data.introduce){
-            search_res = goods_data.goods_list.filter((value) => {
+            search_res = goods_data.goods_list.filter((
+              value: { introduce: string | any[]; }
+              ) => {
               return value.introduce.indexOf(goods_data.selected_data.introduce) !== -1
             })
           }
@@ -79,13 +84,15 @@ export default defineComponent({
       goods_data.selected_data.data_count = goods_data.goods_list.length
     }
 
-    // 计算属性, 切割出实际上需要展示的数据
+    // 计算属性, 切割出实际上需要展示的数据(列表分页)
     const showedDataList = reactive({
       compDataList: computed(() => {
         return goods_data.goods_list.slice(
-            (goods_data.selected_data.current_page - 1) * goods_data.selected_data.single_page_size,
+            (goods_data.selected_data.current_page - 1) * goods_data.selected_data.single_page_size, 
             goods_data.selected_data.current_page * goods_data.selected_data.single_page_size,
-        )
+       // 0-9  
+       // 10-19
+       )
       })
     })
 
@@ -99,8 +106,10 @@ export default defineComponent({
       goods_data.selected_data.single_page_size = page_size
     }
 
-    //watch 监听
-    watch([() => goods_data.selected_data.title, () => goods_data.selected_data.introduce], () => {
+    //watch 监听两个搜索框没内容则复原数组 以便后面重新搜索
+    watch([() =>goods_data.selected_data.title, 
+    () => goods_data.selected_data.introduce], 
+    () => {
       if(goods_data.selected_data.title === "" && goods_data.selected_data.introduce === ""){
         p_getGoodsList()
       }

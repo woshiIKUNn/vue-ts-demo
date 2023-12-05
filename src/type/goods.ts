@@ -1,4 +1,4 @@
-// 商品接口
+// 定义商品接口
 export interface IGoods{
     userId: number,   // 商品归属用户id
     id: number,   // 商品id

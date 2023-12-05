@@ -42,7 +42,7 @@ export default defineComponent({
     // 通过new 实例化logindata
     const data = reactive(new LoginData())
 
-    const router = useRouter()  //-->$router
+    const router = useRouter()  //-->相当于vue2的$router
 
     // 表单验证输入规则
     const rules = {
