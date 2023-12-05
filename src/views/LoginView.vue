@@ -88,7 +88,7 @@ export default defineComponent({
       if (!formEl) return
       formEl.validate((valid) => {
         if (valid) {
-          login(data.ruleForm).then((res) => {
+          login(data.ruleForm).then((res: { data: { token: string; }; }) => {
             console.log(res)
             // 将token进行保存
             localStorage.setItem("token", res.data.token)
@@ -98,7 +98,7 @@ export default defineComponent({
           })
 
             router.push('/')
-          }).catch(e => {
+          }).catch((e: any) => {
             ElMessage({
               type: 'warning', message: '登录失败，用户名或密码错误！'
             })

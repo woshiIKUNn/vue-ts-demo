@@ -41,7 +41,7 @@ export default defineComponent({
     const router = useRouter()
 
     onMounted(() => {
-      getRoleList().then(res => {
+      getRoleList().then((res: { data: { data: any; }; }) => {
         console.log(res)
         role_data.role_list = res.data.data
       })

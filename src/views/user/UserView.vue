@@ -107,7 +107,7 @@ export default defineComponent({
       user_data.editUser = {
         id: row.id,
         nickName: row.nickName,
-        role: row.role.map((value) => value.role),
+        role: row.role.map((value: { role: any; }) => value.role),
         userName: ""
       }
     }
@@ -115,11 +115,11 @@ export default defineComponent({
     const ensureEditUser = () => {
       console.log(user_data.editUser)
       user_data.editShow = false
-      let obj: any = user_data.user_list.find((value) => value.id === user_data.editUser.id)
+      let obj: any = user_data.user_list.find((value: { id: any; }) => value.id === user_data.editUser.id)
       obj.nickName = user_data.editUser.nickName
       obj.role.splice(0, obj.role.length)  // 清除角色
       for(let item of user_data.role_with_auth_list){
-        if(user_data.editUser.role.find((value) => value === item.roleId)){
+        if(user_data.editUser.role.find((value: any) => value === item.roleId)){
           obj.role.push({
             role: item.roleId,  // 角色id
             roleName: item.roleName  // 角色名称
@@ -130,14 +130,14 @@ export default defineComponent({
 
     // 获取全部用户数据, 因为多个地方使用,所以封装为方法
     const p_getUserList = () => {
-      getUserList().then(res => {
+      getUserList().then((res: { data: { data: any; }; }) => {
         user_data.user_list = res.data.data
       })
     }
 
     // 获取全部角色数据, 因为多个地方使用,所以封装为方法
     const p_getRoleList = () => {
-      getRoleList().then(res => {
+      getRoleList().then((res: { data: { data: any; }; }) => {
         user_data.role_with_auth_list = res.data.data
       })
     }
@@ -147,14 +147,14 @@ export default defineComponent({
       let search_res: IUser[] = []  // 接受查询用户的结果
       if(user_data.selected_data.nickName || user_data.selected_data.role){
         if(user_data.selected_data.nickName){
-          search_res = user_data.user_list.filter((value) => {
+          search_res = user_data.user_list.filter((value: { nickName: string | any[]; }) => {
             return value.nickName.indexOf(user_data.selected_data.nickName) !== -1
           })
         }
         if(user_data.selected_data.role){
           search_res = user_data.selected_data.nickName ? search_res : user_data.user_list
           search_res = search_res.filter((value) => {
-            return value.role.find((item) => item.role === user_data.selected_data.role)
+            return value.role.find((item: { role: any; }) => item.role === user_data.selected_data.role)
           })
         }
       }
