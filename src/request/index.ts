@@ -11,7 +11,7 @@ const service = axios.create({
     }
 })
 
-//请求拦截
+//请求request拦截
 service.interceptors.request.use((config) => {
     config.headers = config.headers || {}
     if(localStorage.getItem("token")){
@@ -20,7 +20,7 @@ service.interceptors.request.use((config) => {
     return config
 })
 
-//响应拦截
+//响应response拦截
 service.interceptors.response.use(({ data }) => {
     const code : number = data.data.code
     if(code != 200){
@@ -30,5 +30,5 @@ service.interceptors.response.use(({ data }) => {
 },(err) => {
     console.log(err)
 })
-
+// 暴露service
 export default service

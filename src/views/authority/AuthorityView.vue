@@ -26,7 +26,7 @@ export default defineComponent({
   setup () {
 
     onMounted(() => {
-      getAuthorityList().then(res => {
+      getAuthorityList().then((res: { data: { data: any; }; }) => {
         authority_data.authority_list = res.data.data
       })
     })

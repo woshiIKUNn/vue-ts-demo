@@ -87,6 +87,7 @@ export default defineComponent({
       // 对表单内容进行验证
       if (!formEl) return
       formEl.validate((valid) => {
+        // 通过.then处理promise对象
         if (valid) {
           login(data.ruleForm).then((res: { data: { token: string; }; }) => {
             console.log(res)

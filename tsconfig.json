@@ -16,10 +16,10 @@
       "webpack-env"
     ],
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
-    },
+  	  "@": ["src"],
+  	  "@/*": ["src/*"],
+  	  "assets/*": ["src/assets/*"]
+  	},
     "lib": [
       "esnext",
       "dom",
