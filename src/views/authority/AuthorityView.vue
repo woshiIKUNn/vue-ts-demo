@@ -13,6 +13,7 @@
         }"
     />
     <el-button @click="changeAuthority">确认修改</el-button>
+    <el-button @click="back">返回</el-button>
   </div>
 </template>
 
@@ -21,6 +22,7 @@ import {defineComponent, onMounted, reactive, toRefs} from 'vue';
 import {useRoute} from "vue-router";
 import {AuthorityPage} from "@/type/authority";
 import {getAuthorityList} from "@/request/api";
+import router from '@/router';
 
 export default defineComponent({
   setup () {
@@ -46,10 +48,15 @@ export default defineComponent({
       )
       // 传给后台, 后台去进行修改
     }
-
+     const back = () => {
+        router.push({
+          name: "RoleView",
+        })
+     }
     return {
       ...toRefs(authority_data),
-      changeAuthority
+      changeAuthority,
+      back
     }
   }
 })
