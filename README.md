@@ -15,7 +15,7 @@ yarn serve
 yarn build
 ```
 
-### 简单使用
+### mock的简单使用
 
 首先进入fastmock的官网
 
