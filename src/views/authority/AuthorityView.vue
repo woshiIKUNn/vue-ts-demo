@@ -40,6 +40,7 @@ export default defineComponent({
 
     const changeAuthority = () => {
       console.log(authority_data.tree_ref.getCheckedKeys()
+      // 对乱序的数组进行排序
           .sort(
               function (a: number, b:number){
                 return a - b

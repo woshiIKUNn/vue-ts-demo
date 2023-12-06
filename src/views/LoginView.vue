@@ -10,12 +10,12 @@
             label-width="70px"
         >
           <h2>后台管理系统</h2>
-          <el-form-item label="用户名:" prop="user name">
-            <el-input v-model="ruleForm.username" type="text" autocomplete="off" />
+          <el-form-item label="用户名:" prop="user name" >
+            <el-input v-model="ruleForm.username" type="text" autocomplete="off" placeholder="admin"/>
           </el-form-item>
 
-          <el-form-item label="密码:" prop="password">
-            <el-input v-model="ruleForm.password" type="password" autocomplete="off"/>
+          <el-form-item label="密码:" prop="password"  >
+            <el-input v-model="ruleForm.password" type="password" placeholder="123456" autocomplete="off" show-password="true"/>
           </el-form-item>
 
           <el-form-item>

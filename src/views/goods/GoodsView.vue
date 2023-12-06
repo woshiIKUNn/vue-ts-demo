@@ -43,7 +43,7 @@ export default defineComponent({
 
     // 获取全部商品数据, 因为多个地方使用,所以封装为方法
     const p_getGoodsList = () => {
-      getGoodsList().then((res: { data: { data: string | any[]; }; }) => {
+      getGoodsList().then((res: { data: any}) => {
         console.log('gg', res)
         goods_data.goods_list = res.data.data
         goods_data.selected_data.data_count = res.data.data.length

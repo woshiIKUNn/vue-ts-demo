@@ -24,7 +24,7 @@ export default defineComponent({
   props: ["menu_list"],
   setup (props) {
     let menus = ref(props.menu_list)
-    const route = useRoute()  // 活跃状态的路由
+    const route = useRoute()  // useRoute表示当前活跃状态的路由
     return {
       menus,
       active_menu: route.path

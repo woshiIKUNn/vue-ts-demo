@@ -6,7 +6,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     name: 'home',
     component: HomeView,
-    redirect: 'goods',
+    redirect: 'goods', // redirect设置重定向
     children: [
       {
         path: 'goods',
@@ -68,7 +68,7 @@ const router = createRouter({
 
 // 路由守卫
 router.beforeEach((to, from, next) => {
-  const token: string | null = localStorage.getItem("token")
+  const token: string | null = localStorage.getItem("token") //获取token
   if(!token && to.path !== "/login"){
     next("/login")
   }
