@@ -18,7 +18,7 @@
             <el-input v-model="ruleForm.password" type="password" placeholder="123456" autocomplete="off" show-password="true"/>
           </el-form-item>
 
-          <el-form-item>
+          <el-form-item >
             <el-button class="login-btn" type="primary" @click="submitForm(ruleFormRef)">登录</el-button>
             <el-button class="login-btn" @click="resetForm(ruleFormRef)">重置</el-button>
           </el-form-item>
@@ -123,12 +123,12 @@ export default defineComponent({
  })
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
   .login{
     width: 100%;
     height: 100vh;
-    background-image: url("../assets/bg.jpg");
+    background: radial-gradient(circle, rgba(39,45,68,1) 45%, rgba(255,252,252,1) 100%);
   }
 
   .form-cls{
@@ -140,9 +140,9 @@ export default defineComponent({
     top:200px;
     border-radius: 4px;
   }
-
   .login-btn{
     width: 48%;
+    display: flex;
   }
 
   h2{

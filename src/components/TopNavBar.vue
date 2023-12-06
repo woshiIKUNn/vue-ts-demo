@@ -7,7 +7,7 @@
       text-color="#fff"
       active-text-color="#ffd04b"
   >
-    <el-menu-item index="0"><h2>CBZ后台管理系统</h2></el-menu-item>
+    <el-menu-item index="0"><h2>HZY后台管理系统</h2></el-menu-item>
     <div class="flex-grow" />
     <span style="line-height: 58px;margin-right: 10px;">
       <el-popconfirm title="确定要退出?"
